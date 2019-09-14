@@ -1,0 +1,157 @@
+Design a Traffic Controller System for a Junction
+
+Requirement: Controller can 
+
+1. Give traffic light signal in three colors: 
+    red, yellow and green 
+
+2. Turn yellow before turn red
+
+3. Receive car number & car speed from a sensor
+
+4. Change light color when following actions occur:
+    - Turn red when: pedestrian button is pressed
+    - Turn red when: the number of car sensored greater than 30
+
+5. Allow the pedestrian to press the pedestrian button
+
+6. Create car violation file
+
+7. Add car information to violation file when:
+    - sensor car speed over 30 MPH
+    - sensor car passed juncture when red light
+
+8. Remove car info from violation file if car sensored is:
+    - police car
+    - ambulance
+    - fire truck
+
+9. Allow the police to get violation information
+
+---------------------------------------------------------------------------------------------------------------------
+Class: TrafficController
+
+Data: equipId, equipLocation
+
+Behavior: 
+    workdayControl(){
+        // During work day:
+        // Regularly turn on green light for 45 second, then turn on red
+        trafficLight.turnGreen(45);
+        trafficLight.turnRed(45);
+    
+        //Add car info to violation file when red light
+        Sensor.runRed();
+    }
+
+Behavior:
+    pedbuttonControl(){
+        // Turn red when pedestrian button is pressed
+        while(PedButton.do.isPressed()){
+            trafficLight.turnRed(30);
+            Sensor.runRed(); 
+        }
+    }
+
+Behavior:
+    rushHourControl(){
+        if(Sensor.carInput() % 30 == 0){
+            // During rush hour
+            // Turn red for every 30 cars passed the junction
+            turnRed(30);
+            Sensor.runRed();
+        }
+    }
+
+---------------------------------------------------------------------------------------------------------------------
+Class: Sensor
+Data: carNum
+Behavior:
+    carInput(){
+        for(each car sensored){
+            // Calculate number of car pass the junction
+            carNum ++;
+
+            // If car overspeed, add car information to violation file 
+            if(car.speed > 30MPH){
+                Violation.violationControl(car.platenumber);
+            }
+        }
+        return carNum;
+    }
+
+Behavior:
+    runRed(){
+        //Add car info to violation file when red light on
+        Violation.violationControl(car.platenumber);
+    }
+
+---------------------------------------------------------------------------------------------------------------------
+Class: PedButton
+Data: boolean isPressed
+Behavior: 
+    do(){
+        if(pedestrian button pressed){
+            isPressed = true;
+        }else{
+            isPressed = false;
+        }
+        return isPressed;
+    }
+
+---------------------------------------------------------------------------------------------------------------------
+Class: trafficLight
+Data: location, id, int time
+Behavior:
+    turnGreen(time){
+        // Light on green
+        redLight.off();
+        yellowLight.off();
+
+        greenLight.on(time);
+    }
+
+Behavior: 
+    turnRed(time){
+        redLight.off();
+        greenLight.off();
+
+        // Turn yellow for 2 second before turn red
+        yellowlLght.on(2):
+
+        // Light on red
+        yellowLight.off();
+        redLight.on(time);
+    }
+
+Behavior: 
+    turnYellow(time){
+        // Light on yellow
+        redLight.off();
+        greenLight.off();
+
+        yellowLight.on(time);
+    }
+
+---------------------------------------------------------------------------------------------------------------------
+
+Class: Violation
+Data: fileNo
+Behavior: 
+    violationControl(car.platenumber){
+        Car car[]
+        add car.platenumber to car[]
+
+        for(each car in car[]){
+            if( car.type = policeCar || 
+                car.type = ambulance ||
+                car.type = fireTruck){
+                    remove car.platenumber from car[]
+                }
+        }
+        send.Police(car[]);
+    }
+
+---------------------------------------------------------------------------------------------------------------------
+Class: Car
+Data: type, speed, platenumber

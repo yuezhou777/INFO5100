@@ -1,0 +1,141 @@
+Design a Course Registration Platform
+
+Requirement: Student can
+
+1. Login Platform
+2. Check academic status permission
+3. Search courses
+4. Browse course information
+5. Register for courses
+6. View course schedule
+7. Drop coursses
+
+---------------------------------------------------------------------------------------------
+Class: Student
+Data: name, NUid, password, courseCompleted, courseRegistered
+Behavior: 
+    logIn(){
+	    ClsPlatform.logIn(NUid, password);
+    }
+    
+Behavior: 
+    // Check pre-registration requirement
+    checkStatus(){
+        ClsPlatform.checkPreReg(NUid);
+    }
+
+Behavior: 
+    //Search courses on platform
+    searchCls(){
+        ClsPlatform.searchCls(CRN);
+    } 
+
+Behavior: 
+    //Register courses on platform
+    regCls(){
+        if(ClsPlatform.checkPreReg()){
+            ClsPlatform.regCls(NUid, CRN);
+        }else{
+            Error;
+        }
+    } 
+
+Behavior: 
+    // Review courses registered
+    viewSchedule(){
+        // Check course registered status
+        ClsPlatform.regCls(NUid, CRN);
+        print(crs.crsName);
+    }
+
+Behavior:
+    dropCls(){
+        dropCls(NUid, CRN);
+    }
+    
+---------------------------------------------------------------------------------------------
+Class: ClsPlatform
+Behavior:
+    logIn(){
+        List NUid;
+        List password;
+
+	    for(each NUid in the list){
+            for(each password in the list){
+		        if(NUid == NUid & password == password){
+                    logIn = true;
+                }else{
+                    logIn = false;
+                }
+            }
+        }
+        return logIn;
+    }
+
+Behavior: 
+    checkPreReg(NUid){
+        // Fetch Courses object from NUid
+        Student stu;
+        // Fetch Courses object from CRN
+        Course crs;
+        // Check pre-registration requirement
+        boolean regStatus = false
+
+        for(each course completed){
+            if(stu.courseCompleted == crs.prerequisite){
+                regStatus = true;
+                break;
+            }
+        }
+        return regStatus;     
+    }
+
+Behavior:
+    searchCls(CRN){
+        // Fetch Courses object from CRN
+        Course crs;
+
+        // Display course information
+        println(crs.crsName + CRN);
+        println(crs.grade);
+        println(crs.credit);
+        println(crs.professor);
+        println(crs.availableSeats);
+    } 
+
+Behavior: 
+    regCls(NUid, CRN){
+        // Fetch Courses object from NUid
+        Student stu;
+        // Fetch Courses object from CRN
+        Course crs;
+
+        if(checkPreReg(NUid)){
+            crs.availableSeats = crs.availableSeats - 1;
+            stu.courseRegistered = crs.crsName;
+            boolean confirm = true;
+        }else{
+            boolean confirm = false;
+        }
+        return confirm;
+    }
+
+Behavior: 
+    dropCls(NUid, CRN){
+        // Fetch Courses object from NUid
+        Student stu;
+        // Fetch Courses object from CRN
+        Course crs;
+        
+        if(regCls(NUid, CRN)){
+            crs.availableSeats = crs.availableSeats + 1;
+            stu.courseRegistered = null;
+            print("course" + CRN + "dropped");
+        }else{
+            print("no course registered");
+        }
+    }
+
+---------------------------------------------------------------------------------------------
+Class: Courses
+Data: crsName, CRN, grade, prerequisite, credit, professor, availableSeats

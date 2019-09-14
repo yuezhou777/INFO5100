@@ -1,0 +1,110 @@
+Design a Parking Lot
+
+Requirement: User can 
+
+1. Take a ticket from the ticket machine
+2. Check the parking place availability
+3. Enter the parking lot
+4. Park the car
+5. Make a payment
+6. Leave the parking lot
+
+---------------------------------------------------------------------------------------------
+Class: User
+Data: name, carOwned
+Behavior: 
+    enterParkLot(){
+        pressButton();
+        TicketMachine.giveTicket();
+        drive.car.stop();
+    }
+
+Behavior: 
+    leaveParkLot(){
+        pressButton();
+        TicketMachine.billing();
+        if(insertCoin()){
+            drive.car.move();
+        }
+    }
+
+Behavior:
+    insertCoin(){
+        if()TicketMachine.billing() == coinInsert{ 
+            BoomGate.raise();
+            boolean completePay = true;
+        }else{
+            Alert User;
+            boolean completePay = false;
+        }
+        return completePay;
+    }
+
+Behavior:
+    drive(){
+        Car car;
+        car.move();
+        car.stop();
+    }
+
+---------------------------------------------------------------------------------------------
+Class: TicketMachine
+Behavior: 
+    giveTicket(){
+        // Keep car infomation from sensor
+        Sensor.carInput();
+        // Call for boom gate to raise
+        BoomGate.raise();
+    }
+
+Behavior: 
+    billing(){
+        //calculate parking price from parking time
+        float time = Sensor.carOutput();
+        float price = time * 2.0;
+        return price;
+    }
+
+---------------------------------------------------------------------------------------------
+Class: BoomGate
+Behavior: 
+    raise(){
+        //raise the boom barrier
+    }
+
+Behavior: 
+    lower(){
+        //lower the boom barrier
+    }
+
+---------------------------------------------------------------------------------------------
+Class: Car
+Data: plateNum, owner
+Behavior: 
+    move(){
+        //car move
+    }
+
+Behavior: 
+    stop(){
+        //car stop
+    }
+---------------------------------------------------------------------------------------------
+Class: Sensor
+Behavior: 
+    carInput(plateNum){
+        list <list> plateNum;
+    }
+    
+Behavior: 
+    carOutput(plateNum){
+        list <list> plateNum;
+        for each(plateNum in the list){
+            if(plateNum = plateNum){
+                return Timer.timer();
+            }else{
+                Error;
+            }
+        }
+    }
+

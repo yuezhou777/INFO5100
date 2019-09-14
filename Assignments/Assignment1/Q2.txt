@@ -1,0 +1,179 @@
+Design a Car Rental System
+
+Requirement: Customer can
+
+1. Search cars based on parameters(model, bodystyle, price)
+2. Book cars
+3. Apply for personal customization: Rent GPS navigation, safety seats
+4. Edit/cancel booking
+5. Make payment: rent, insurance, fine
+6. Contact rental agency
+
+---------------------------------------------------------------------------------------------
+Class: Customer 
+Data: customerId, orderId, CreditCard
+
+Behavior: 
+    searchCar(model, bodystyle, price){
+        // Display cars to user
+        List <Cars> cars = Agency.agencySearch(model, bodystyle, price);
+    }
+
+Behavior: 
+    bookCar(){
+        // get booking information from agency
+        bookInfo = Agency.agencyBook(customerId, plateNum, bookDate, returnDate);
+    }
+
+Behavior: 
+    cancelBooking(){
+        Agency.agencyCancel();
+    }
+
+Behavior: 
+    contactAgency(){
+        Agency.print();
+    }
+
+-----------------------------------------------------------------------------------------------
+Class: Car
+Data: plateNum, model, bodystyle, rent, availableDate
+Behavior: 
+    checkAvailable(date){
+        // Show Available cars on sepcific date
+    }
+
+-----------------------------------------------------------------------------------------------
+Class: Agency
+Data: name, phoneNum
+Behavior: 
+    agencySearch(model, bodystyle, price){
+        // Search cars for user
+        List <Cars> Cars
+
+        //search available cars
+        for(i = 0; i <= car.Num(); i++){
+            boolean isAvaliable = true;
+            if(bookDate < Car.checkAvaliable(date) || returnDate > Car.checkAvaliable(date)){
+                isAvaliable = 1;
+                break;
+            }
+
+            if(isAvailable){
+                print(car.plateNum);
+            }
+        } 
+    }
+
+Behavior: 
+    agencyBook(customerId, plateNum, bookDate, returnDate){
+        // Get car object
+        Car car;
+
+        // Get customer object
+        Customer customer;
+
+        // Calculate number of days rent
+        days = returnDate - bookDate;
+        return bookInfo;
+    
+        // Make payment for customer booking
+        Payment.pay(days);
+
+        // Make personal customization
+        Customization gps.apply();
+        SafetySeat seat.apply();
+    }
+
+Behavior: 
+    agencyCancel(){
+        // Cancel booking and make refund
+        customer.bookInfo = null;
+        car.AvaliableDate = bookDate;
+        Payment.refund();
+    }
+
+Behavior:
+    print(){
+        // Provide contact information to customer
+        print("name:"+ name + "phone number:" + phoneNum);
+    }
+
+---------------------------------------------------------------------------------------------
+Class: Customization
+Behavior: 
+    apply(GPSNum){
+        // Add additional payment
+        Payment.pay(GPSNum);
+    }
+
+Behavior: 
+    apply(childNum){
+        // Add additional payment
+        Payment.pay(childNum);
+    }
+
+---------------------------------------------------------------------------------------------
+CLass: CreditCard
+Data: cardNumber, securityCode, expireDate
+Behavior: 
+    cardAvailable(bookDate){
+        boolean isAvailable = true;
+        if(expireDate <= bookDate){
+            isAvailable = false;
+            }
+    }
+    
+Behavior: 
+    refund(customerId, price){
+        // make refund with customerId and price
+    }
+
+---------------------------------------------------------------------------------------------
+CLass: Payment
+Behavior: 
+    pay(days){
+        //Check if credit card is expired
+        if(CreditCard.cardAvailable()){
+            double price = days * rent;
+            return price;
+        }else{
+        throw new Exception("Credit Card Expired");
+        }
+    }
+
+Behavior: 
+    pay(childNum){
+        double price = childnum * 50
+        return price;
+    }
+
+Behavior: 
+    pay(GPSNum){
+        double price = GPSnum * 20
+        return price;
+    }
+
+Behavior: 
+    pay(insurance){
+        //Check if credit card is expired
+        if(CreditCard.cardAvailable()){
+            price = insurancePrice;
+            return price;
+        }else{
+            throw new Exception("Credit Card Expired");
+        }
+    }
+
+Behavior: 
+    pay(fine){
+        //Check if credit card is expired
+        if(CreditCard.cardAvailable()){
+            price = finePrice;
+            return price;
+        }else{
+            throw new Exception("Credit Card Expired");
+        }
+    }
+
+

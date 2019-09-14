@@ -1,0 +1,119 @@
+Design a Vending Machine
+
+Requirement: User can 
+
+1. choose product
+2. insert coin
+3. fetch change
+4. take product
+5. contact maintainer if machine broken
+
+---------------------------------------------------------------------------------------------
+Class: User
+Behavior: 
+    chooseProduct(){
+        productChosen = VendingMachine.getProduct(productNo)
+        return productChosen
+    }
+
+Behavior: 
+    insertCoin(){
+        int coinNum = number of coin insert;
+        return coinNum;
+    }
+
+Behavior: 
+    fetchChanges(){
+        // Call to fetch changes
+        VendingMachine.giveChange();
+    }
+Behavior: 
+    callMaintainer(){
+        VendingMachine.needRepair();
+    }
+---------------------------------------------------------------------------------------------
+Class: VendingMachine
+Data: machineNum, location
+Behavior:
+    getProduct(productNo){
+        // fetch product object
+        Product prdct;
+    }
+
+Behavior:
+    identityCoin(){
+        // Identify coin value and calculate total value inserted
+        double totalVal = 0;
+        for(i = 0; i <= coinInsert(); i++)
+            switch(coinType){
+                case penny: 
+                    coinVal = 0.01;
+                    break;
+                case nickel : 
+                    coinVal = 0.01;
+                    break;
+                case dime : 
+                    coinVal = 0.01;
+                    break;
+                case quarter : 
+                    coinVal = 0.01;
+                    break;
+                case halfDollar : 
+                    coinVal = 0.01;
+                    break;
+                case Dollar : 
+                    coinVal = 0.01;
+                    break;
+            }
+            totalVal += coinVal;
+        }
+        return totalVal;
+    }
+
+Behavior: 
+    dropProduct(){
+        // Drop Product if enough coin inserted
+        if(totalVal >= prdct.productVal){
+            Product.drop();
+            productVal = prdct.productVal;
+            giveChange();
+        }else{
+            // Give coin back to User
+            productVal = 0;
+            giveChange();
+        }
+    }
+
+Behavior: 
+    giveChange(productVal){
+        // Calculate number of coin back to User
+        double changeVal = totalVal - productVal;
+        coinDrop();
+    }
+
+Behavior: 
+    needRepair(){
+        // Provide maintainer contact information to User
+        print("name:"+ Maintainer.name + "phone number:" + Maintainer.phoneNum);
+    }
+
+---------------------------------------------------------------------------------------------
+Class: Coin
+Data: coinVal
+Behavior: 
+    coinDrop(double changeVal){
+        coinVal = changeVal
+        // Product drop from vending machine
+    }
+
+---------------------------------------------------------------------------------------------
+Class: Product
+Data: productVal, productNo
+Behavior: 
+    drop(){
+        // Product drop from vending machine
+    }
+
+---------------------------------------------------------------------------------------------
+Class: Maintainer
+Data: name, phoneNumber
