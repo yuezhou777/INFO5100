@@ -27,7 +27,15 @@ public class Class{
     }
 
     public void registerStudent(int studentId){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter student id");
 
+        int[] studentIds = new int[getMaxCapacity()];
+        for(int i = 0; i < studentIds.length; i++){
+            studentIds[i] = s.nextInt();
+        }
+        s.close();
+        System.out.println("Students ids:" + Arrays.toString(studentIds));
     }
 
     public Integer[] removeDuplicates(int[] studentIds) {
