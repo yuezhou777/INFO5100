@@ -12,15 +12,18 @@ public class Class{
     }
 
     public Class(int courseId){
-
+        this.courseId = courseId;
     }
 
     public Class(int courseId, int professorId){
-
+        this.courseId = courseId;
+        this.professorId = professorId;
     }
 
     public Class(int courseId, int professorId, int credits){
-
+        this.courseId = courseId;
+        this.professorId = professorId;
+        this.credits = credits;
     }
 
     public void registerStudent(int studentId){
