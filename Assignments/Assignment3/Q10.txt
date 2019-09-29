@@ -1,0 +1,10 @@
+    Q10. What is the difference between Encapsulation and Abstraction
+        
+        Both Encapsulation and Abstration are hiding information from users, however, encapsultion is 
+        used to hiding coding detail and data in order to protect data from being altered. Abstraction
+        is used to hiding irrelevant data in order to extract common features of objects.
+
+        For example, All cameras can take picture, and they all have a lens. Although some cameras have 
+        digital screens and some not, we focus on the picture-taking feature and lens, this is what 
+        abstration does. The complex mechanism of how camera works is hidden from users, who only need 
+        to press shutter to take photos, this is how encapsulation works.

@@ -1,0 +1,14 @@
+    Q9. Explain Encapsulation with an example. (Write at least 30-40 words).
+
+        Encapsulation hides the complexity of an object and provides a simple operational entry to visitors
+        of that object. The camera is an example of encapsulation. The working mechanism of the camera is
+        very complicated, but users of camera do not have to understand its working mechanism, they only need
+        to press the shutter to take pictures.
+
+        Encapsualtion helps to keep data in an object safe from being tampered. In the example of camera, 
+        if all the parts and components are exposed to users, the camera is easy to be damaged since users 
+        may interfere its parts.
+
+        Encapsulation allows code to be reused, just like a camera can be used in many scenarios. 
+        If we need to make some improvement on camera, we only need to revise the data within the camera class. 
+        Users class do not need to make make any change to benefit from this change.
