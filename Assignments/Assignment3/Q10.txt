@@ -8,3 +8,4 @@
         digital screens and some not, we focus on the picture-taking feature and lens, this is what 
         abstration does. The complex mechanism of how camera works is hidden from users, who only need 
         to press shutter to take photos, this is how encapsulation works.
+
