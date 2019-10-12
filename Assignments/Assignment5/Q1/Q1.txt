@@ -1,0 +1,10 @@
+Explain the difference between final and finally in Java 8.
+
+Final is a keyword that modifies class, method and variable.
+Final variable cannot be changed once initialized.
+Final method cannot be overriden.
+Final class cannot be inherited.
+
+Finally is a block that used to catch different types of exceptions.
+Finally block will be executed after try and catch blocks, and will 
+be executed no matter the exception is thrown or not.
