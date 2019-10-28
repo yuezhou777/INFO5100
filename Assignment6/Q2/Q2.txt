@@ -1,7 +1,0 @@
-Q2. Write two differences between ArrayList and LinkedList.
-    1. ArrayList is a data structure that uses a dynamic array to store elements,
-        while LinkedList is a data structure that uses a linked list to store elements.
-
-    2. Getting and setting data with ArrayList is faster than with LinkedList, since
-        ArrayList uses index to position the data, while LinkedList iterates each element
-        so it is more time consuming.
