@@ -48,4 +48,4 @@ public class Test {
 		b.addAll(list);//After this method called, addCount equals to 3.
 		System.out.println(b.getAddCount()+b.getI());// b.getI method is extended from A, and the i value is 3.
 	}
-} 
+}
